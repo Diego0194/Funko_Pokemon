@@ -40,17 +40,19 @@
       max-height: 100%;
       object-fit: contain;
       cursor: pointer;
-      transition: opacity 0.3s ease;
-      width: 150px; /* Ajusta este valor según sea necesario */
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .precio {
-      color: #555;
+      color: #e44d26;
       font-size: 1.2em;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      padding: 8px;
+      box-sizing: border-box;
       display: none;
     }
 
@@ -67,6 +69,30 @@
       margin: 0 -10px; /* Ajusta estos valores según sea necesario */
     }
 
+    .lightbox-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .lightbox-content {
+      text-align: center;
+    }
+
+    .lightbox-image {
+      max-width: 80%;
+      max-height: 80%;
+      border: 2px solid white;
+      box-sizing: border-box;
+    }
+
     @media only screen and (max-width: 1169px) {
       .funko-container {
         grid-template-columns: repeat(2, minmax(100px, 1fr));
@@ -77,17 +103,37 @@
       }
     }
   </style>
+
+  <script>
+    function openLightbox(imgSrc, price) {
+      const lightboxContainer = document.getElementById('lightbox-container');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxContent = document.getElementById('lightbox-content');
+
+      lightboxImage.src = imgSrc;
+      lightboxImage.alt = 'Lightbox Image';
+      lightboxContainer.style.display = 'flex';
+
+      // Muestra el precio en la lightbox
+      lightboxContent.innerHTML = `<p class="precio">${price}</p>`;
+    }
+
+    function closeLightbox() {
+      const lightboxContainer = document.getElementById('lightbox-container');
+      lightboxContainer.style.display = 'none';
+    }
+  </script>
 </head>
 <body>
   <div class="logos-container">
-    <img src="img/Funko.png" alt="Funko Image" class="logo">
-    <img src="img/Pop.png" alt="Pop Image" class="logo">
-    <img src="img/Pokemon.png" alt="Pokemon Image" class="logo">
+    <img src="img/Funko.png" alt="Funko Image" class="logo" onclick="openLightbox('img/Funko.png', 'Precio: $19.99');">
+    <img src="img/Pop.png" alt="Pop Image" class="logo" onclick="openLightbox('img/Pop.png', 'Precio: $24.99');">
+    <img src="img/Pokemon.png" alt="Pokemon Image" class="logo" onclick="openLightbox('img/Pokemon.png', 'Precio: $14.99');">
   </div>
 
   <div class="funko-container">
-
-    <div class="funko-card" onclick="toggleView(this)">
+    <!-- Copia y pega aquí los bloques .funko-card según lo que tengas en tu archivo original -->
+    <div class="funko-card" onclick="openLightbox('img/353 - Pikachu.jpg', 'Precio: 12,45€');">
       <h2>Funko Pop #353 - Pikachu</h2>
       <img src="img/353 - Pikachu.jpg" alt="Funko Pop #353 - Pikachu">
       <p class="precio">Precio: 12,45€</p>
@@ -317,25 +363,10 @@
 
 <!-- Continúa agregando más Funko Pops según sea necesario -->
 
-</div>
-  <script>
-    function toggleView(card) {
-      var img = card.querySelector('img');
-      var priceElement = card.querySelector('.precio');
-
-      // Verifica si la imagen está visible
-      if (img.style.opacity === '1') {
-        // Desvanece la imagen
-        img.style.opacity = '0';
-        // Muestra el precio
-        priceElement.style.display = 'block';
-      } else {
-        // Muestra la imagen
-        img.style.opacity = '1';
-        // Oculta el precio
-        priceElement.style.display = 'none';
-      }
-    }
-  </script>
+  <div id="lightbox-container" class="lightbox-container" onclick="closeLightbox()">
+    <div class="lightbox-content">
+      <img id="lightbox-image" class="lightbox-image" src="" alt="Lightbox Image">
+    </div>
+  </div>
 </body>
 </html>
