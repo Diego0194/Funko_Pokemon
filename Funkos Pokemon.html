@@ -69,7 +69,7 @@
       margin: 0 -10px; /* Ajusta estos valores según sea necesario */
     }
 
-    .lightbox-container {
+	.lightbox-container {
       display: none;
       position: fixed;
       top: 0;
@@ -84,15 +84,30 @@
 
     .lightbox-content {
       text-align: center;
+      background-color: white; /* Añade un fondo blanco */
+      padding: 20px; /* Ajusta el espaciado según sea necesario */
+      max-width: 80%; /* Establece un ancho máximo */
+      max-height: 80%; /* Establece una altura máxima */
+      box-sizing: border-box;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .lightbox-image {
-      max-width: 80%;
-      max-height: 80%;
+      width: 381px;
+      height: 381px;
+      object-fit: contain; /* Añade esta propiedad para escalar sin distorsionar */
       border: 2px solid white;
       box-sizing: border-box;
     }
-
+	
+    .lightbox-description {
+      color: #e44d26;
+      font-size: 1.5em;
+      margin-top: 10px;
+    }
     @media only screen and (max-width: 1169px) {
       .funko-container {
         grid-template-columns: repeat(2, minmax(100px, 1fr));
@@ -102,262 +117,279 @@
         font-size: 1em;
       }
     }
+	
   </style>
-
-  <script>
-    function openLightbox(imgSrc, price) {
-      const lightboxContainer = document.getElementById('lightbox-container');
-      const lightboxImage = document.getElementById('lightbox-image');
-      const lightboxContent = document.getElementById('lightbox-content');
-
-      lightboxImage.src = imgSrc;
-      lightboxImage.alt = 'Lightbox Image';
-      lightboxContainer.style.display = 'flex';
-
-      // Muestra el precio en la lightbox
-      lightboxContent.innerHTML = `<p class="precio">${price}</p>`;
-    }
-
-    function closeLightbox() {
-      const lightboxContainer = document.getElementById('lightbox-container');
-      lightboxContainer.style.display = 'none';
-    }
-  </script>
 </head>
 <body>
+
+ <script>
+  function openLightbox(imgSrc, description) {
+    const lightboxContainer = document.getElementById('lightbox-container');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxDescription = document.getElementById('lightbox-description');
+
+    lightboxImage.src = imgSrc;
+    lightboxImage.alt = 'Lightbox Image';
+    lightboxContainer.style.display = 'flex';
+
+    // Muestra la imagen en la lightbox
+    lightboxImage.style.display = 'block';
+
+    // Muestra la descripción (incluyendo el precio) en la lightbox
+    lightboxDescription.innerText = description;
+  }
+
+  function closeLightbox() {
+    const lightboxContainer = document.getElementById('lightbox-container');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxDescription = document.getElementById('lightbox-description');
+
+    lightboxContainer.style.display = 'none';
+
+    // Restaura la visibilidad por defecto
+    lightboxImage.style.display = 'none';
+    lightboxDescription.innerText = '';
+  }
+</script>
+
   <div class="logos-container">
     <img src="img/Funko.png" alt="Funko Image" class="logo" onclick="openLightbox('img/Funko.png', 'Precio: $19.99');">
     <img src="img/Pop.png" alt="Pop Image" class="logo" onclick="openLightbox('img/Pop.png', 'Precio: $24.99');">
     <img src="img/Pokemon.png" alt="Pokemon Image" class="logo" onclick="openLightbox('img/Pokemon.png', 'Precio: $14.99');">
   </div>
 
-  <div class="funko-container">
-    <!-- Copia y pega aquí los bloques .funko-card según lo que tengas en tu archivo original -->
-    <div class="funko-card" onclick="openLightbox('img/353 - Pikachu.jpg', 'Precio: 12,45€');">
-      <h2>Funko Pop #353 - Pikachu</h2>
-      <img src="img/353 - Pikachu.jpg" alt="Funko Pop #353 - Pikachu">
-      <p class="precio">Precio: 12,45€</p>
-    </div>
-
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #453 - Bulbasaur</h2>
-      <img src="img/453 - Bulbasaur.jpg" alt="Funko Pop #453 - Bulbasaur">
-      <p class="precio">Precio: Regalo</p>
-    </div>
-
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #454 - Bulbasaur 10inch</h2>
-      <img src="img/454 - Bulbasaur 10inch.jpg" alt="Funko Pop #454 - Bulbasaur 10inch">
-      <p class="precio">Precio: 35,00€</p>
-    </div>
-
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #455 - Charmander metallic</h2>
-      <img src="img/455 - Charmander metallic.jpg" alt="Funko Pop #455 - Charmander metallic">
-      <p class="precio">Precio: 15,00€</p>
-    </div>
-
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #455 - Charmander</h2>
-      <img src="img/455 - Charmander.jpg" alt="Funko Pop #455 - Charmander">
-      <p class="precio">Precio: 12,00€</p>
-    </div>
-
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #456 - Charmander 10inch</h2>
-      <img src="img/456 - Charmander 10inch.jpg" alt="Funko Pop #456 - Charmander 10inch">
-      <p class="precio">Precio: 16,00€ (sin caja)</p>
-    </div>
-
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #504 - Squirtle diamond</h2>
-      <img src="img/504 - Squirtle diamond.jpg" alt="Funko Pop #504 - Squirtle diamond">
-      <p class="precio">Precio: 17,15€</p>
-    </div>
-
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #504 - Squirtle</h2>
-      <img src="img/504 - Squirtle.jpg" alt="Funko Pop #504 - Squirtle">
-      <p class="precio">Precio: Regalo</p>
-    </div>
-
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #505 - Squirtle 10inch</h2>
-      <img src="img/505 - Squirtle 10inch.jpg" alt="Funko Pop #505 - Squirtle 10inch">
-      <p class="precio">Precio: 22,00€</p>
-    </div>
-	  
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #577 - Eevee flocked conv.</h2>
-      <img src="img/577 - Eevee flocked.jpg" alt="Funko Pop #577 - Eevee flocked">
-      <p class="precio">Precio: 36,50€</p>
-    </div>
-
-    <div class="funko-card" onclick="toggleView(this)">
-      <h2>Funko Pop #579 - Pichu flocked conv.</h2>
-      <img src="img/579 - Pichu flocked.jpg" alt="Funko Pop #579 - Pichu flocked">
-      <p class="precio">Precio: 36,50€</p>
-    </div>
-
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #580 - Vulpix flocked conv.</h2>
-	  <img src="img/580 - Vulpix flocked.jpg" alt="Funko Pop #580 - Vulpix flocked">
-	  <p class="precio">Precio: 36,50€</p>
-	</div>
-
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #581 - Mewtwo</h2>
-	  <img src="img/581 - Mewtwo.jpg" alt="Funko Pop #581 - Mewtwo">
+	<div class="funko-container">
+	<div class="funko-card" onclick="openLightbox('img/353 - Pikachu.jpg', 'Precio: 12,45€');">
+	  <h2>#353 - Pikachu</h2>
+	  <img src="img/353 - Pikachu.jpg" alt="#353 - Pikachu">
 	  <p class="precio">Precio: 12,45€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #595 - Rattatta</h2>
-	  <img src="img/595 - Rattatta.jpg" alt="Funko Pop #595 - Rattatta">
-	  <p class="precio">Precio: 12,30€</p>
+	<div class="funko-card" onclick="openLightbox('img/453 - Bulbasaur.jpg', 'Precio: Regalo');">
+	  <h2>#453 - Bulbasaur</h2>
+	  <img src="img/453 - Bulbasaur.jpg" alt="#453 - Bulbasaur">
+	  <p class="precio">Precio: Regalo</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #596 - Cubone</h2>
-	  <img src="img/596 - Cubone.jpg" alt="Funko Pop #596 - Cubone">
+	<div class="funko-card" onclick="openLightbox('img/454 - Bulbasaur 10inch.jpg', 'Precio: 35,00€');">
+	  <h2>#454 - Bulbasaur 10inch</h2>
+	  <img src="img/454 - Bulbasaur 10inch.jpg" alt="#454 - Bulbasaur 10inch">
+	  <p class="precio">Precio: 35,00€</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/455 - Charmander metallic.jpg', 'Precio: 15,00€');">
+	  <h2>#455 - Charmander metallic</h2>
+	  <img src="img/455 - Charmander metallic.jpg" alt="#455 - Charmander metallic">
+	  <p class="precio">Precio: 15,00€</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/455 - Charmander.jpg', 'Precio: 12,00€');">
+	  <h2>#455 - Charmander</h2>
+	  <img src="img/455 - Charmander.jpg" alt="#455 - Charmander">
 	  <p class="precio">Precio: 12,00€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #597 - Growlithe</h2>
-	  <img src="img/597 - Growlithe.jpg" alt="Funko Pop #597 - Growlithe">
+	<div class="funko-card" onclick="openLightbox('img/456 - Charmander 10inch.jpg', 'Precio: 16,00€ (sin caja)');">
+	  <h2>#456 - Charmander 10inch</h2>
+	  <img src="img/456 - Charmander 10inch.jpg" alt="#456 - Charmander 10inch">
+	  <p class="precio">Precio: 16,00€ (sin caja)</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/504 - Squirtle diamond.jpg', 'Precio: 17,15€');">
+	  <h2>#504 - Squirtle diamond</h2>
+	  <img src="img/504 - Squirtle diamond.jpg" alt="#504 - Squirtle diamond">
+	  <p class="precio">Precio: 17,15€</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/504 - Squirtle.jpg', 'Precio: Regalo');">
+	  <h2>#504 - Squirtle</h2>
+	  <img src="img/504 - Squirtle.jpg" alt="#504 - Squirtle">
+	  <p class="precio">Precio: Regalo</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/505 - Squirtle 10inch.jpg', 'Precio: 22,00€');">
+	  <h2>#505 - Squirtle 10inch</h2>
+	  <img src="img/505 - Squirtle 10inch.jpg" alt="#505 - Squirtle 10inch">
+	  <p class="precio">Precio: 22,00€</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/577 - Eevee flocked.jpg', 'Precio: 36,50€');">
+	  <h2>#577 - Eevee flocked conv.</h2>
+	  <img src="img/577 - Eevee flocked.jpg" alt="#577 - Eevee flocked">
+	  <p class="precio">Precio: 36,50€</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/579 - Pichu flocked.jpg', 'Precio: 36,50€');">
+	  <h2>#579 - Pichu flocked conv.</h2>
+	  <img src="img/579 - Pichu flocked.jpg" alt="#579 - Pichu flocked">
+	  <p class="precio">Precio: 36,50€</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/580 - Vulpix flocked.jpg', 'Precio: 36,50€');">
+	  <h2>#580 - Vulpix flocked conv.</h2>
+	  <img src="img/580 - Vulpix flocked.jpg" alt="#580 - Vulpix flocked">
+	  <p class="precio">Precio: 36,50€</p>
+	</div>
+	
+	<div class="funko-card" onclick="openLightbox('img/581 - Mewtwo.jpg', 'Precio: 12,45€');">
+	  <h2>#581 - Mewtwo</h2>
+	  <img src="img/581 - Mewtwo.jpg" alt="#581 - Mewtwo">
+	  <p class="precio">Precio: 12,45€</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/582 - Mr Mime.jpg', 'Precio: 2,67€');">
+	  <h2>#582 - Mr Mime</h2>
+	  <img src="img/582 - Mr Mime.jpg" alt="#582 - Mr Mime">
+	  <p class="precio">Precio: 2,67€</p>
+	</div>
+	
+	<div class="funko-card" onclick="openLightbox('img/595 - Rattatta.jpg', 'Precio: 12,30€');">
+	  <h2>#595 - Rattatta</h2>
+	  <img src="img/595 - Rattatta.jpg" alt="#595 - Rattatta">
+	  <p class="precio">Precio: 12,30€</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/596 - Cubone.jpg', 'Precio: 12,00€');">
+	  <h2>#596 - Cubone</h2>
+	  <img src="img/596 - Cubone.jpg" alt="#596 - Cubone">
+	  <p class="precio">Precio: 12,00€</p>
+	</div>
+
+	<div class="funko-card" onclick="openLightbox('img/597 - Growlithe.jpg', 'Precio: 12,57€');">
+	  <h2>#597 - Growlithe</h2>
+	  <img src="img/597 - Growlithe.jpg" alt="#597 - Growlithe">
 	  <p class="precio">Precio: 12,57€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #598 - Pikachu</h2>
-	  <img src="img/598 - Pikachu.jpg" alt="Funko Pop #598 - Pikachu">
+	<div class="funko-card" onclick="openLightbox('img/598 - Pikachu.jpg', 'Precio: 8,00€');">
+	  <h2>#598 - Pikachu</h2>
+	  <img src="img/598 - Pikachu.jpg" alt="#598 - Pikachu">
 	  <p class="precio">Precio: 8,00€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #626 - Eevee</h2>
-	  <img src="img/626 - Eevee.jpg" alt="Funko Pop #626 - Eevee">
+	<div class="funko-card" onclick="openLightbox('img/626 - Eevee.jpg', 'Precio: 16,00€');">
+	  <h2>#626 - Eevee</h2>
+	  <img src="img/626 - Eevee.jpg" alt="#626 - Eevee">
 	  <p class="precio">Precio: 16,00€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #627 - Vaporeon</h2>
-	  <img src="img/627 - Vaporeon.jpg" alt="Funko Pop #627 - Vaporeon">
+	<div class="funko-card" onclick="openLightbox('img/627 - Vaporeon.jpg', 'Precio: 9,54€');">
+	  <h2>#627 - Vaporeon</h2>
+	  <img src="img/627 - Vaporeon.jpg" alt="#627 - Vaporeon">
 	  <p class="precio">Precio: 9,54€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #628 - Jolteon</h2>
-	  <img src="img/628 - Jolteon.jpg" alt="Funko Pop #628 - Jolteon">
+	<div class="funko-card" onclick="openLightbox('img/628 - Jolteon.jpg', 'Precio: 9,54€');">
+	  <h2>#628 - Jolteon</h2>
+	  <img src="img/628 - Jolteon.jpg" alt="#628 - Jolteon">
 	  <p class="precio">Precio: 9,54€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #629 - Flareon</h2>
-	  <img src="img/629 - Flareon.jpg" alt="Funko Pop #629 - Flareon">
+	<div class="funko-card" onclick="openLightbox('img/629 - Flareon.jpg', 'Precio: 12,00€');">
+	  <h2>#629 - Flareon</h2>
+	  <img src="img/629 - Flareon.jpg" alt="#629 - Flareon">
 	  <p class="precio">Precio: 12,00€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #643 - Mew</h2>
-	  <img src="img/643 - Mew.jpg" alt="Funko Pop #643 - Mew">
+	<div class="funko-card" onclick="openLightbox('img/643 - Mew.jpg', 'Precio: 18,95€');">
+	  <h2>#643 - Mew</h2>
+	  <img src="img/643 - Mew.jpg" alt="#643 - Mew">
 	  <p class="precio">Precio: 18,95€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #645 - Raichu</h2>
-	  <img src="img/645 - Raichu.jpg" alt="Funko Pop #645 - Raichu">
+	<div class="funko-card" onclick="openLightbox('img/645 - Raichu.jpg', 'Precio: 12,57€');">
+	  <h2>#645 - Raichu</h2>
+	  <img src="img/645 - Raichu.jpg" alt="#645 - Raichu">
 	  <p class="precio">Precio: 12,57€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #779 - Pikachu</h2>
-	  <img src="img/779 - Pikachu.jpg" alt="Funko Pop #779 - Pikachu">
+	<div class="funko-card" onclick="openLightbox('img/779 - Pikachu.jpg', 'Precio: 14,98€');">
+	  <h2>#779 - Pikachu</h2>
+	  <img src="img/779 - Pikachu.jpg" alt="#779 - Pikachu">
 	  <p class="precio">Precio: 14,98€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #780 - Meowth</h2>
-	  <img src="img/780 - Meowth.jpg" alt="Funko Pop #780 - Meowth">
+	<div class="funko-card" onclick="openLightbox('img/780 - Meowth.jpg', 'Precio: 18,95€');">
+	  <h2>#780 - Meowth</h2>
+	  <img src="img/780 - Meowth.jpg" alt="#780 - Meowth">
 	  <p class="precio">Precio: 18,95€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #781 - Psyduck</h2>
-	  <img src="img/781 - Psyduck.jpg" alt="Funko Pop #781 - Psyduck">
+	<div class="funko-card" onclick="openLightbox('img/781 - Psyduck.jpg', 'Precio: 12,30€');">
+	  <h2>#781 - Psyduck</h2>
+	  <img src="img/781 - Psyduck.jpg" alt="#781 - Psyduck">
 	  <p class="precio">Precio: 12,30€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #843 - Charizard</h2>
-	  <img src="img/843 - Charizard.jpg" alt="Funko Pop #843 - Charizard">
+	<div class="funko-card" onclick="openLightbox('img/843 - Charizard.jpg', 'Precio: 12,57€');">
+	  <h2>#843 - Charizard</h2>
+	  <img src="img/843 - Charizard.jpg" alt="#843 - Charizard">
 	  <p class="precio">Precio: 12,57€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #844 - Horsea</h2>
-	  <img src="img/844 - Horsea.jpg" alt="Funko Pop #844 - Horsea">
+	<div class="funko-card" onclick="openLightbox('img/844 - Horsea.jpg', 'Precio: 12,30€');">
+	  <h2>#844 - Horsea</h2>
+	  <img src="img/844 - Horsea.jpg" alt="#844 - Horsea">
 	  <p class="precio">Precio: 12,30€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #848 - Caterpie</h2>
-	  <img src="img/848 - Caterpie.jpg" alt="Funko Pop #848 - Caterpie">
+	<div class="funko-card" onclick="openLightbox('img/848 - Caterpie.jpg', 'Precio: 12,30€');">
+	  <h2>#848 - Caterpie</h2>
+	  <img src="img/848 - Caterpie.jpg" alt="#848 - Caterpie">
 	  <p class="precio">Precio: 12,30€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #849 - Pidgeotto</h2>
-	  <img src="img/849 - Pidgeotto.jpg" alt="Funko Pop #849 - Pidgeotto">
+	<div class="funko-card" onclick="openLightbox('img/849 - Pidgeotto.jpg', 'Precio: 13,55€');">
+	  <h2>#849 - Pidgeotto</h2>
+	  <img src="img/849 - Pidgeotto.jpg" alt="#849 - Pidgeotto">
 	  <p class="precio">Precio: 13,55€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #855 - Alakazam</h2>
-	  <img src="img/855 - Alakazam.jpg" alt="Funko Pop #855 - Alakazam">
+	<div class="funko-card" onclick="openLightbox('img/855 - Alakazam.jpg', 'Precio: 13,55€');">
+	  <h2>#855 - Alakazam</h2>
+	  <img src="img/855 - Alakazam.jpg" alt="#855 - Alakazam">
 	  <p class="precio">Precio: 13,55€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #857 - Sylveon</h2>
-	  <img src="img/857 - Sylveon.jpg" alt="Funko Pop #857 - Sylveon">
+	<div class="funko-card" onclick="openLightbox('img/857 - Sylveon.jpg', 'Precio: 13,55€');">
+	  <h2>#857 - Sylveon</h2>
+	  <img src="img/857 - Sylveon.jpg" alt="#857 - Sylveon">
 	  <p class="precio">Precio: 13,55€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #864 - Lapras</h2>
-	  <img src="img/864 - Lapras.jpg" alt="Funko Pop #864 - Lapras">
+	<div class="funko-card" onclick="openLightbox('img/864 - Lapras.jpg', 'Precio: 12,58€');">
+	  <h2>#864 - Lapras</h2>
+	  <img src="img/864 - Lapras.jpg" alt="#864 - Lapras">
 	  <p class="precio">Precio: 12,58€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #866 - Leafeon</h2>
-	  <img src="img/866 - Leafeon.jpg" alt="Funko Pop #866 - Leafeon">
+	<div class="funko-card" onclick="openLightbox('img/866 - Leafeon.jpg', 'Precio: 13,55€');">
+	  <h2>#866 - Leafeon</h2>
+	  <img src="img/866 - Leafeon.jpg" alt="#866 - Leafeon">
 	  <p class="precio">Precio: 13,55€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #886 - Oshawott</h2>
-	  <img src="img/886 - Oshawott.jpg" alt="Funko Pop #886 - Oshawott">
+	<div class="funko-card" onclick="openLightbox('img/886 - Oshawott.jpg', 'Precio: 13,50€');">
+	  <h2>#886 - Oshawott</h2>
+	  <img src="img/886 - Oshawott.jpg" alt="#886 - Oshawott">
 	  <p class="precio">Precio: 13,50€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #920 - Arcanine</h2>
-	  <img src="img/920 - Arcanine.jpg" alt="Funko Pop #920 - Arcanine">
+	<div class="funko-card" onclick="openLightbox('img/920 - Arcanine.jpg', 'Precio: 12,57€');">
+	  <h2>#920 - Arcanine</h2>
+	  <img src="img/920 - Arcanine.jpg" alt="#920 - Arcanine">
 	  <p class="precio">Precio: 12,57€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #921 - Glaceon flocked</h2>
-	  <img src="img/921 - Glaceon flocked.jpg" alt="Funko Pop #921 - Glaceon flocked">
+	<div class="funko-card" onclick="openLightbox('img/921 - Glaceon flocked.jpg', 'Precio: 12,30€');">
+	  <h2>#921 - Glaceon flocked</h2>
+	  <img src="img/921 - Glaceon flocked.jpg" alt="#921 - Glaceon flocked">
 	  <p class="precio">Precio: 12,30€</p>
 	</div>
 
-	<div class="funko-card" onclick="toggleView(this)">
-	  <h2>Funko Pop #922 - Scorbunny</h2>
-	  <img src="img/922 - Scorbunny.jpg" alt="Funko Pop #922 - Scorbunny">
+	<div class="funko-card" onclick="openLightbox('img/922 - Scorbunny.jpg', 'Precio: 11,00€');">
+	  <h2>#922 - Scorbunny</h2>
+	  <img src="img/922 - Scorbunny.jpg" alt="#922 - Scorbunny">
 	  <p class="precio">Precio: 11,00€</p>
 	</div>
 
@@ -366,7 +398,7 @@
   <div id="lightbox-container" class="lightbox-container" onclick="closeLightbox()">
     <div class="lightbox-content">
       <img id="lightbox-image" class="lightbox-image" src="" alt="Lightbox Image">
+      <div id="lightbox-description" class="lightbox-description"></div>
     </div>
-  </div>
 </body>
 </html>
