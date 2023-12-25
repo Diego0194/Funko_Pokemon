@@ -18,13 +18,14 @@
 
     .funko-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
       justify-content: space-around;
     }
 
     .funko-card {
-      padding: 15px;
+      position: relative;
+      padding: 10px;
       background-color: #fff;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       text-align: center;
@@ -32,28 +33,26 @@
 
     h2 {
       color: #e44d26;
-      /* Tamaño del título en dispositivos móviles */
       font-size: 1.2em;
+      margin-bottom: 10px; /* Añadido espacio entre el título y la imagen */
     }
 
     img {
       max-width: 100%;
-      height: auto;
-      margin: 10px auto;
+      max-height: 100%;
+      object-fit: contain;
     }
 
     p {
       color: #555;
     }
 
-    /* Estilos para pantallas más pequeñas en modo vertical, como móviles o iPhone 13 Pro en modo vertical */
     @media only screen and (max-width: 1169px) {
       .funko-container {
-        grid-template-columns: repeat(2, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
       }
 
       h2 {
-        /* Tamaño del título en dispositivos móviles en modo vertical */
         font-size: 1em;
       }
     }
