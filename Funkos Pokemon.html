@@ -54,6 +54,17 @@
       display: none;
     }
 
+    .logos-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      height: 70px;
+      margin: 0 -15px; /* Ajusta estos valores según sea necesario */
+    }
+
     @media only screen and (max-width: 1169px) {
       .funko-container {
         grid-template-columns: repeat(2, minmax(100px, 1fr));
@@ -66,10 +77,10 @@
   </style>
 </head>
 <body>
-  <div>
-    <img src="img/Funko.png" alt="Funko Image" style="height: 70px; margin-right: -25px; margin-left:-10px">
-    <img src="img/Pop.png" alt="Pop Image" style="height: 70px; margin-right: -10px; margin-left:-25px"> <!-- Ajusta la altura según sea necesario -->
-    <img src="img/Pokemon.png" alt="Pokemon Image" style="height: 70px; margin-right: -10px; margin-left:-10px">
+  <div class="logos-container">
+    <img src="img/Funko.png" alt="Funko Image" class="logo">
+    <img src="img/Pop.png" alt="Pop Image" class="logo">
+    <img src="img/Pokemon.png" alt="Pokemon Image" class="logo">
   </div>
 
   <div class="funko-container">
