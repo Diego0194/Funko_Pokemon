@@ -3,23 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Colección Funko Pops Pokémon</title>
+  <title>Mi Colección de Funko Pops Pokémon</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
       margin: 20px;
       background-color: #f0f0f0;
-    }
-
-    h1 {
       text-align: center;
-      color: #333;
     }
 
     .funko-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
+      gap: 10px; /* Ajusta este valor según sea necesario */
       justify-content: space-around;
     }
 
@@ -29,21 +25,23 @@
       background-color: #fff;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       text-align: center;
-      overflow: hidden; /* Oculta cualquier parte adicional de la imagen que se desplace fuera del contenedor */
+      overflow: hidden;
+      margin: 5px; /* Ajusta este valor según sea necesario */
     }
 
     h2 {
       color: #e44d26;
       font-size: 1.2em;
-      margin-bottom: 8px; /* Añadido espacio entre el título y la imagen */
+      margin-bottom: 8px;
     }
 
     img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      cursor: pointer; /* Cambio el cursor a puntero para indicar que es interactivo */
-      transition: opacity 0.3s ease; /* Agregado efecto de transición al cambiar la opacidad de la imagen */
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      width: 150px; /* Ajusta este valor según sea necesario */
     }
 
     .precio {
@@ -53,7 +51,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      display: none; /* Inicialmente oculto */
+      display: none;
     }
 
     @media only screen and (max-width: 1169px) {
@@ -67,9 +65,12 @@
     }
   </style>
 </head>
-
 <body>
-  <h1>Mi Colección de Funko Pops Pokémon</h1>
+  <div>
+    <img src="img/Funko.png" alt="Funko Image" style="height: 70px; margin-right: -25px; margin-left:-10px">
+    <img src="img/Pop.png" alt="Pop Image" style="height: 70px; margin-right: -10px; margin-left:-25px"> <!-- Ajusta la altura según sea necesario -->
+    <img src="img/Pokemon.png" alt="Pokemon Image" style="height: 70px; margin-right: -10px; margin-left:-10px">
+  </div>
 
   <div class="funko-container">
 
