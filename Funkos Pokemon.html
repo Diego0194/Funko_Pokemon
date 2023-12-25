@@ -32,6 +32,8 @@
 
     h2 {
       color: #e44d26;
+      /* Tamaño del título en dispositivos móviles */
+      font-size: 1.2em;
     }
 
     img {
@@ -48,6 +50,11 @@
     @media only screen and (max-width: 1169px) {
       .funko-container {
         grid-template-columns: repeat(2, minmax(150px, 1fr));
+      }
+
+      h2 {
+        /* Tamaño del título en dispositivos móviles en modo vertical */
+        font-size: 1em;
       }
     }
   </style>
