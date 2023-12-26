@@ -19,15 +19,18 @@
       justify-content: space-around;
     }
 
-    .funko-card {
-      position: relative;
-      padding: 10px;
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      overflow: hidden;
-      margin: 5px; /* Ajusta este valor según sea necesario */
-    }
+	.funko-card {
+	  position: relative;
+	  padding: 10px;
+	  background-color: #fff;
+	  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	  text-align: center;
+	  overflow: hidden;
+	  margin: 5px;
+	  display: flex; /* Agrega esta línea */
+	  flex-direction: column; /* Añade esta línea para que los elementos se apilen verticalmente */
+	  align-items: center; /* Añade esta línea para centrar los elementos horizontalmente */
+	}
 
     h2 {
       color: #e44d26;
@@ -36,11 +39,12 @@
     }
 
     img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      cursor: pointer;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+	  max-width: 100%;
+	  max-height: 100%;
+	  object-fit: contain;
+	  cursor: pointer;
+	  transition: opacity 0.3s ease, transform 0.3s ease;
+	  margin-top: auto; /* Mueve la imagen hacia abajo (parte inferior) */
     }
 
     .precio {
